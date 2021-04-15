@@ -32,10 +32,10 @@ module.exports = {
   devServer: {
     port: port,
     open: true,
-    // overlay: {
-    //   warnings: false,
-    //   errors: true
-    // },
+    overlay: {
+      warnings: false,
+      errors: false
+    },
     // before: require('./mock/mock-server.js'),
     proxy: {
       '/api': {

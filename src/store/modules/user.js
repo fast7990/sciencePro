@@ -1,4 +1,12 @@
-import { login, logout, getInfo } from '@/api/user'
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2021-04-15 22:27:53
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2021-04-15 23:32:43
+ */
+import { login, logout, opUsers } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
@@ -6,7 +14,13 @@ const getDefaultState = () => {
   return {
     token: getToken(),
     name: '',
-    avatar: ''
+    avatar: '',
+    username: '',//用户名
+    displayName: '',//中文展示名
+    email: '',//邮箱
+    phone: '',//手机号
+    roleid: '',//所属角色ID
+    departid: ''//所属部门ID
   }
 }
 
@@ -19,12 +33,9 @@ const mutations = {
   SET_TOKEN: (state, token) => {
     state.token = token
   },
-  SET_NAME: (state, name) => {
-    state.name = name
+  SET_USER_INFO: (state, userInfo) => {
+    Object.assign(state, userInfo)
   },
-  SET_AVATAR: (state, avatar) => {
-    state.avatar = avatar
-  }
 }
 
 const actions = {
@@ -33,9 +44,9 @@ const actions = {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), password: password }).then(response => {
-        const { data } = response
-        commit('SET_TOKEN', data.token)
-        setToken(data.token)
+        const { roleID } = response
+        commit('SET_TOKEN', roleID)
+        setToken(roleID)
         resolve()
       }).catch(error => {
         reject(error)
@@ -46,18 +57,19 @@ const actions = {
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getInfo(state.token).then(response => {
-        const { data } = response
+      opUsers({
+        'op': 'GET',
+        'departid': state.departid
+      }).then(response => {
 
-        if (!data) {
-          return reject('Verification failed, please Login again.')
+        if (!response.succ) {
+          return reject(response.errMsg)
         }
 
-        const { name, avatar } = data
+        const { username, displayName, email, phone, roleid, departid } = response
 
-        commit('SET_NAME', name)
-        commit('SET_AVATAR', avatar)
-        resolve(data)
+        commit('SET_USER_INFO', { username, displayName, email, phone, roleid, departid })
+        resolve(response)
       }).catch(error => {
         reject(error)
       })

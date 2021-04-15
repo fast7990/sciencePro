@@ -1,3 +1,11 @@
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2021-04-15 22:27:53
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2021-04-15 23:36:59
+ */
 import axios from 'axios'
 import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
@@ -5,7 +13,7 @@ import { getToken } from '@/utils/auth'
 
 // create an axios instance
 const service = axios.create({
-  baseURL: "http://localhost:9528",
+  baseURL: 'http://localhost:9528',
   // baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000 // request timeout
@@ -44,12 +52,13 @@ service.interceptors.response.use(
    * You can also judge the status by HTTP Status Code
    */
   response => {
+
     const res = response.data
 
     // if the custom code is not 20000, it is judged as an error.
-    if (res.code !== 20000) {
+    if (!res.succ) {
       Message({
-        message: res.message || 'Error',
+        message: res.errMsg || 'Error',
         type: 'error',
         duration: 5 * 1000
       })
@@ -67,7 +76,7 @@ service.interceptors.response.use(
           })
         })
       }
-      return Promise.reject(new Error(res.message || 'Error'))
+      return Promise.reject(new Error(res.errMsg || 'Error'))
     } else {
       return res
     }
@@ -75,7 +84,7 @@ service.interceptors.response.use(
   error => {
     console.log('err' + error) // for debug
     Message({
-      message: error.message,
+      message: error.errMsg,
       type: 'error',
       duration: 5 * 1000
     })
