@@ -1,0 +1,136 @@
+rem(a) {
+  a / 100rem
+}
+.clear::after
+  content ''
+  clear both
+  display block
+clear()
+  &:after
+    content ''
+    clear both
+    display block
+mainColor = #CCCCCC
+lC = #409EFF
+hui = rgba(153,157,159,0.8)
+.jdColor
+  color: #F23030
+.jdActive
+  color: #FF5602
+btn()
+  .btn
+    margin 20px 0
+    text-align center
+    span
+      display inline-block
+      height 30px
+      width 100px
+      line-height 30px
+      text-align center
+      border-radius 5px
+      background-color white
+      cursor pointer
+      color black
+      margin rem(10)
+      font-size: rem(20)
+    span:last-child
+      background-color #409EFF
+      color white
+table()
+  table
+    border-collapse collapse
+    width 100%
+    text-align center
+    vertical-align center
+    th
+      padding 10px
+      background-color mainColor
+    .has-gutter
+      background-color mainColor
+      color black
+    tr
+      td
+        padding 10px
+        text-align: center
+        input
+         vertical-align: middle
+        .el-input
+          margin-top 0
+          width 80px
+          vertical-align middle
+          text-align center
+          >>>.el-input__inner
+            text-align center 
+      td:last-child
+        span
+          margin 10px 5px
+          color blue
+          cursor pointer
+
+Popup()
+  .Popup
+    position fixed
+    top 0
+    left 0
+    background-color rgba(0,0,0,0.3)
+    width 100%
+    height 100%
+    z-index 999
+    .Popup_center
+      width 400px
+      position absolute
+      top 20%
+      left 50%
+      transform translate(-50%)
+      background-color white
+      padding 10px
+      border-radius 10px
+      div
+        margin-top 10px
+        >span
+          display inline-block
+          width 30%
+          text-align right
+          margin 0 5px
+        .left
+          text-align left
+        .el-input
+          width 200px
+      btn()
+.typeSpan
+  vertical-align: text-top
+  >span
+    cursor pointer
+    display inline-block
+    height 25px
+    line-height 25px
+    background-color lC
+    border-radius 5px
+    padding 2px
+    color white
+    margin 5px
+    font-size 12px
+    float left
+card()
+  .el-card
+    margin-bottom 10px
+    margin-top 0px
+    h3,h2
+      margin-bottom rem(10)
+    >>>.el-row
+      margin-bottom rem(10)
+      img
+        width rem(200)
+        height rem(200)
+        vertical-align: text-top
+close()
+  span
+    margin: 5px
+    display: inline-block
+    background-color: #4997C1
+    border-radius: 5px
+    padding: 2px
+    text-align: center
+    cursor: pointer
+    color: white
+card()

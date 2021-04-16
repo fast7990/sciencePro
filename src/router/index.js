@@ -6,7 +6,10 @@ Vue.use(Router)
 /* Layout */
 import Layout from '@/layout'
 import systemPage from './module/system'
+import budget from './module/budget'
 import contractPage from './module/contract'
+import project from './module/project'
+import science from './module/scienceEcharts'
 /**
  * Note: sub-menu only appear when route children.length >= 1
  * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -142,7 +145,10 @@ export const constantRoutes = [
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true },
   systemPage,
-  contractPage
+  budget,
+  contractPage,
+  project,
+  science
 ]
 
 const createRouter = () => new Router({

@@ -7,7 +7,7 @@ const router = {
     redirect: '/system/organization',
     meta: {
         title: '系统设置',
-        icon: 'nested'
+        icon: 'xitongguanli'
     },
     children: [
         {
