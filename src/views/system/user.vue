@@ -98,7 +98,7 @@
       <el-table-column
         :label="$t('table.actions')"
         align="center"
-        width="150"
+        width="250"
         class-name="small-padding fixed-width"
       >
         <template slot-scope="{ row, $index }">
