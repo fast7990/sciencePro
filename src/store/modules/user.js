@@ -59,7 +59,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       opUsers({
         'op': 'GET',
-        'departid': state.departid
+        // 'departid': state.departid
       }).then(response => {
 
         if (!response.succ) {

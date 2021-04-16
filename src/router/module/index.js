@@ -3,6 +3,7 @@ import system from './system'
 import budget from './budget'
 import project from './project'
 import contract from './contract'
-const router ={
-
+const router = {
+    
 }
+export default router
