@@ -19,7 +19,7 @@ const getDefaultState = () => {
     displayName: '',//中文展示名
     email: '',//邮箱
     phone: '',//手机号
-    roleid: '',//所属角色ID
+    roleID: '',//所属角色ID
     departid: ''//所属部门ID
   }
 }
@@ -66,9 +66,9 @@ const actions = {
           return reject(response.errMsg)
         }
 
-        const { username, displayName, email, phone, roleid, departid } = response
+        const { username, displayName, email, phone, roleID, depart } = response.users[0]
 
-        commit('SET_USER_INFO', { username, displayName, email, phone, roleid, departid })
+        commit('SET_USER_INFO', { username, displayName, email, phone, roleID, departid: depart })
         resolve(response)
       }).catch(error => {
         reject(error)

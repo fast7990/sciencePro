@@ -1,54 +1,13 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input
+      <!-- <el-input
         v-model="listQuery.title"
         :placeholder="$t('table.title')"
         style="width: 200px"
         class="filter-item"
         @keyup.enter.native="handleFilter"
       />
-      <el-select
-        v-model="listQuery.importance"
-        :placeholder="$t('table.importance')"
-        clearable
-        style="width: 90px"
-        class="filter-item"
-      >
-        <el-option
-          v-for="item in importanceOptions"
-          :key="item"
-          :label="item"
-          :value="item"
-        />
-      </el-select>
-      <el-select
-        v-model="listQuery.type"
-        :placeholder="$t('table.type')"
-        clearable
-        class="filter-item"
-        style="width: 130px"
-      >
-        <el-option
-          v-for="item in calendarTypeOptions"
-          :key="item.key"
-          :label="item.display_name + '(' + item.key + ')'"
-          :value="item.key"
-        />
-      </el-select>
-      <el-select
-        v-model="listQuery.sort"
-        style="width: 140px"
-        class="filter-item"
-        @change="handleFilter"
-      >
-        <el-option
-          v-for="item in sortOptions"
-          :key="item.key"
-          :label="item.label"
-          :value="item.key"
-        />
-      </el-select>
       <el-button
         v-waves
         class="filter-item"
@@ -57,7 +16,7 @@
         @click="handleFilter"
       >
         {{ $t("table.search") }}
-      </el-button>
+      </el-button> -->
       <el-button
         class="filter-item"
         style="margin-left: 10px"
@@ -67,7 +26,7 @@
       >
         {{ $t("table.add") }}
       </el-button>
-      <el-button
+      <!-- <el-button
         v-waves
         :loading="downloadLoading"
         class="filter-item"
@@ -84,7 +43,7 @@
         @change="tableKey = tableKey + 1"
       >
         {{ $t("table.reviewer") }}
-      </el-checkbox>
+      </el-checkbox> -->
     </div>
 
     <el-table
@@ -109,12 +68,11 @@
           <span>{{ row.id }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.date')" width="150px" align="center">
-        <template slot-scope="{ row }">
-          <span>{{ row.timestamp | parseTime("{y}-{m}-{d} {h}:{i}") }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column :label="$t('table.title')" min-width="150px">
+
+      <el-table-column
+        :label="$t('table.organization.bumenmingcheng')"
+        align="center"
+      >
         <template slot-scope="{ row }">
           <span class="link-type" @click="handleUpdate(row)">{{
             row.title
@@ -122,46 +80,17 @@
           <el-tag>{{ row.type | typeFilter }}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.author')" width="110px" align="center">
-        <template slot-scope="{ row }">
-          <span>{{ row.author }}</span>
-        </template>
-      </el-table-column>
       <el-table-column
-        v-if="showReviewer"
-        :label="$t('table.reviewer')"
-        width="110px"
+        :label="$t('table.organization.cengji')"
         align="center"
       >
         <template slot-scope="{ row }">
           <span style="color: red">{{ row.reviewer }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.importance')" width="80px">
-        <template slot-scope="{ row }">
-          <svg-icon
-            v-for="n in +row.importance"
-            :key="n"
-            icon-class="star"
-            class="meta-item__icon"
-          />
-        </template>
-      </el-table-column>
-      <el-table-column :label="$t('table.readings')" align="center" width="95">
-        <template slot-scope="{ row }">
-          <span
-            v-if="row.pageviews"
-            class="link-type"
-            @click="handleFetchPv(row.pageviews)"
-            >{{ row.pageviews }}</span
-          >
-          <span v-else>0</span>
-        </template>
-      </el-table-column>
       <el-table-column
-        :label="$t('table.status')"
+        :label="$t('table.organization.suoshuyijibumen')"
         class-name="status-col"
-        width="100"
       >
         <template slot-scope="{ row }">
           <el-tag :type="row.status | statusFilter">
@@ -172,14 +101,14 @@
       <el-table-column
         :label="$t('table.actions')"
         align="center"
-        width="230"
+        width="150"
         class-name="small-padding fixed-width"
       >
         <template slot-scope="{ row, $index }">
           <el-button type="primary" size="mini" @click="handleUpdate(row)">
             {{ $t("table.edit") }}
           </el-button>
-          <el-button
+          <!-- <el-button
             v-if="row.status != 'published'"
             size="mini"
             type="success"
@@ -193,7 +122,7 @@
             @click="handleModifyStatus(row, 'draft')"
           >
             {{ $t("table.draft") }}
-          </el-button>
+          </el-button> -->
           <el-button
             v-if="row.status != 'deleted'"
             size="mini"
@@ -260,14 +189,6 @@
               :value="item"
             />
           </el-select>
-        </el-form-item>
-        <el-form-item :label="$t('table.importance')">
-          <el-rate
-            v-model="temp.importance"
-            :colors="['#99A9BF', '#F7BA2A', '#FF9900']"
-            :max="3"
-            style="margin-top: 8px"
-          />
         </el-form-item>
         <el-form-item :label="$t('table.remark')">
           <el-input
@@ -336,7 +257,7 @@ const calendarTypeKeyValue = calendarTypeOptions.reduce((acc, cur) => {
 }, {});
 
 export default {
-  name: "ComplexTable",
+  name: "organization",
   components: { Pagination },
   directives: { waves },
   filters: {
@@ -411,7 +332,14 @@ export default {
     };
   },
   created() {
-    this.getList();
+    // this.getList();
+    this.listLoading = false;
+     this.list = [{
+       id:1,
+       type:2,
+       
+     }];
+        this.total = 3;
   },
   methods: {
     getList() {
@@ -419,8 +347,6 @@ export default {
       fetchList(this.listQuery).then((response) => {
         this.list = response.data.items;
         this.total = response.data.total;
-
-        // Just to simulate the time of the request
         setTimeout(() => {
           this.listLoading = false;
         }, 1.5 * 1000);
