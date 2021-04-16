@@ -54,7 +54,8 @@ module.exports = {
     name: name,
     resolve: {
       alias: {
-        '@': resolve('src')
+        '@': resolve('src'),
+        '@tool':resolve('src/components/assembly')
       }
     }
   },

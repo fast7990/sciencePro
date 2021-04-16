@@ -9,7 +9,7 @@ const router = {
             path: 'contract/index',
             name: '合同管理',
             component: () => import('@/views//contract/index'),
-            meta: { title: '合同管理', icon: 'dashboard' }
+            meta: { title: '合同管理', icon: 'hetongguanli' }
         }
     ]
 }
