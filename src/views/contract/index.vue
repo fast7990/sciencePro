@@ -38,7 +38,6 @@
         <el-table-column prop="key" label="合同状态" />
         <el-table-column prop="key" label="项目名称" />
         <el-table-column prop="key" label="项目所处阶段" />
-
       </el-table>
       <pagination
       v-show="total > 0"
