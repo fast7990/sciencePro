@@ -149,3 +149,35 @@ body > .el-container {
       }
     }
 }
+.search-card{
+    margin-bottom: 15px;
+    .el-card__header{
+      padding: 12px 20px;
+      border-bottom: none;
+      .icon{
+        float: right;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      span{
+       font-size :16px;
+      }
+}
+    .el-form-item{
+      margin-bottom: 12px
+}
+    
+    .body{
+      padding: 0 20px 10px;
+    }
+    
+    .search-button-container{
+      text-align: right;
+      margin: 0 20px 10px 0;
+  }
+    .search-button-containerR{
+      text-align: left;
+      margin: 0 20px 10px 0;
+    }
+}

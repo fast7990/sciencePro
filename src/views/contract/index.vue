@@ -1,84 +1,88 @@
 <template>
-  <div class="app-container">
-    <el-form ref="form" :model="form" label-width="120px">
-      <el-form-item label="Activity name">
-        <el-input v-model="form.name" />
-      </el-form-item>
-      <el-form-item label="Activity zone">
-        <el-select v-model="form.region" placeholder="please select your zone">
-          <el-option label="Zone one" value="shanghai" />
-          <el-option label="Zone two" value="beijing" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="Activity time">
-        <el-col :span="11">
-          <el-date-picker v-model="form.date1" type="date" placeholder="Pick a date" style="width: 100%;" />
-        </el-col>
-        <el-col :span="2" class="line">-</el-col>
-        <el-col :span="11">
-          <el-time-picker v-model="form.date2" type="fixed-time" placeholder="Pick a time" style="width: 100%;" />
-        </el-col>
-      </el-form-item>
-      <el-form-item label="Instant delivery">
-        <el-switch v-model="form.delivery" />
-      </el-form-item>
-      <el-form-item label="Activity type">
-        <el-checkbox-group v-model="form.type">
-          <el-checkbox label="Online activities" name="type" />
-          <el-checkbox label="Promotion activities" name="type" />
-          <el-checkbox label="Offline activities" name="type" />
-          <el-checkbox label="Simple brand exposure" name="type" />
-        </el-checkbox-group>
-      </el-form-item>
-      <el-form-item label="Resources">
-        <el-radio-group v-model="form.resource">
-          <el-radio label="Sponsor" />
-          <el-radio label="Venue" />
-        </el-radio-group>
-      </el-form-item>
-      <el-form-item label="Activity form">
-        <el-input v-model="form.desc" type="textarea" />
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="onSubmit">Create</el-button>
-        <el-button @click="onCancel">Cancel</el-button>
-      </el-form-item>
-    </el-form>
-  </div>
-</template>
+    <div class="page">
+        <serchFiled>
+          <el-form label-width="120px">
+              <el-row>
+          <el-col :span="2" :offset="1"><el-button type="primary">添加</el-button></el-col>
+          <el-col :span="2" :offset="1"><el-button type="primary">导出列表</el-button></el-col>
+        </el-row>
+        <el-row :gutter="24">
+          <div class="demo-input-suffix">
+          <el-col :span="6" :offset="14"> 
+          <el-input
+             placeholder="请输入内容"
+             prefix-icon="el-icon-search"
+        >
+         </el-input>
+          </el-col>
+          </div>
+          <el-col :span="4"><el-button type="primary">高级搜索</el-button></el-col>
+      </el-row>
+          </el-form>
+        </serchFiled>
+      <div class="page-content">
+            <el-table
+        :data="tableData"
+        border
+        fit
+        highlight-current-row
+        style="width: 100%"
+      >
+        <el-table-column prop="key" label="合同编号" />
+        <el-table-column prop="pv" label="合同名称" />
+        <el-table-column prop="key" label="合同金额" />
+        <el-table-column prop="key" label="合同签署日期" />
+        <el-table-column prop="key" label="合同已付款金额" />
+        <el-table-column prop="key" label="合同待付款金额" />
+        <el-table-column prop="key" label="合同待付款比例" />
+        <el-table-column prop="key" label="合同状态" />
+        <el-table-column prop="key" label="项目名称" />
+        <el-table-column prop="key" label="项目所处阶段" />
 
+      </el-table>
+      <pagination
+      v-show="total > 0"
+      :total="total"
+      :page.sync="listQuery.page"
+      :limit.sync="listQuery.limit"
+      @pagination="getData"
+    />
+      </div>
+    </div>
+</template>
 <script>
+import Pagination from "@/components/Pagination"; // secondary package based on el-pagination
+import serchFiled from '@tool/searchField'
 export default {
-  data() {
-    return {
-      form: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
-      }
-    }
-  },
-  methods: {
-    onSubmit() {
-      this.$message('submit!')
+    data(){
+        return {
+            tableKey: 0,
+      list: null,
+      total: 0,
+      listLoading: true,
+            tableData:[],
+            listQuery: {
+        page: 1,
+        limit: 20,
+        importance: undefined,
+        title: undefined,
+        type: undefined,
+        sort: "+id",
+      },
+        }
     },
-    onCancel() {
-      this.$message({
-        message: 'cancel!',
-        type: 'warning'
-      })
-    }
-  }
+    methods:{
+        // 获取表格数据
+     getData(){
+      
+     }
+    },
+    components:{Pagination,serchFiled}
 }
 </script>
-
 <style scoped>
-.line{
-  text-align: center;
+.search_btn{
+    float: right;
 }
+
 </style>

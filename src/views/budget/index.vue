@@ -1,16 +1,13 @@
 <template>
     <div class="page">
-        <search-field tittle="预算管理查询">
-
-        </search-field>
-     <!-- <el-header>
-      <el-form label-width="120px">
-        <el-row :gutter="20">
+        <serchFiled>
+          <el-form label-width="120px">
+              <el-row>
           <el-col :span="2" :offset="1"><el-button type="primary">添加</el-button></el-col>
           <el-col :span="2" :offset="1"><el-button type="primary">导出列表</el-button></el-col>
-        </el-row> -->
-      <!-- <el-row :gutter="24"> -->
-          <!-- <div class="demo-input-suffix">
+        </el-row>
+        <el-row :gutter="24">
+          <div class="demo-input-suffix">
           <el-col :span="6" :offset="14"> 
           <el-input
              placeholder="请输入内容"
@@ -18,12 +15,11 @@
         >
          </el-input>
           </el-col>
-          </div> -->
-          <!-- <el-col :span="4"><el-button type="primary">高级搜索</el-button></el-col>
-      </el-row> -->
-      <!-- </el-form>  
-        </el-header>  -->
-
+          </div>
+          <el-col :span="4"><el-button type="primary">高级搜索</el-button></el-col>
+      </el-row>
+          </el-form>
+        </serchFiled>
       <div class="page-content">
             <el-table
         :data="tableData"
