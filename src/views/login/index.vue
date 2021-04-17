@@ -55,7 +55,7 @@
         type="primary"
         style="width:100%;margin-bottom:30px;"
         @click.native.prevent="handleLogin"
-      >Login</el-button>
+      >登陆</el-button>
 
       <div class="tips">
         <!-- <span style="margin-right:20px;">username: admin</span>
@@ -124,6 +124,7 @@ export default {
     },
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
+        console.log(valid)
         if (valid) {
           this.loading = true;
           this.$store
@@ -133,6 +134,8 @@ export default {
               this.loading = false;
             })
             .catch(() => {
+              console.log('请求失败')
+
               this.loading = false;
             });
         } else {
@@ -161,6 +164,7 @@ $cursor: #fff;
 
 /* reset element-ui css */
 .login-container {
+  background-image:url(../../../public/bg.png) ;
   .el-input {
     display: inline-block;
     height: 47px;

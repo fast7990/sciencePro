@@ -63,3 +63,89 @@ div:focus {
 .app-container {
   padding: 20px;
 }
+.el-header, .el-footer {
+  background-color: #ffff;
+  color: #333;
+  text-align: center;
+  line-height: 60px;
+}
+
+.el-aside {
+  background-color: #D3DCE6;
+  color: #333;
+  text-align: center;
+  line-height: 200px;
+}
+
+.el-main {
+  background-color: #E9EEF3;
+  color: #333;
+  text-align: center;
+  line-height: 160px;
+}
+
+body > .el-container {
+  margin-bottom: 40px;
+}
+
+.el-container:nth-child(5) .el-aside,
+.el-container:nth-child(6) .el-aside {
+  line-height: 260px;
+}
+.page{
+  text-align: center;
+  margin-top :rem(30);
+}
+.page-content{
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom :20px;
+    color :#606266;
+    .el-date-editor.el-input{
+      width :100%
+    };
+    .inLine{
+      .el-select{
+        display: inline-block !important
+      }
+    }
+    .block{
+      .el-select{
+        display :block !important
+      }
+    }
+    .page-title{
+      font-size :16px;
+      height: 50px;
+      line-height: 20px;
+      .el-button{
+        float :right}
+      }
+    .button-field{
+      p{
+       line-height: 25px;
+       span{
+        color :#F17B20
+       }
+      }
+    }
+    .button-field-bottom{
+      padding-bottom: 10px;
+      text-align :center;
+      margin-top: 20px;
+    }
+    .normal-form{
+      width: 600px;
+      padding-top: 20px;
+    }
+
+    .full-width-form{
+      width: 100%;
+      padding-top: 20px;
+      .el-col{
+        margin-right: 30px
+      }
+    }
+}
