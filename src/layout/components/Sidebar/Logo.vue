@@ -1,3 +1,11 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2021-04-15 22:27:53
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2021-04-16 23:55:36
+-->
 <template>
   <div class="sidebar-logo-container" :class="{'collapse':collapse}">
     <transition name="sidebarLogoFade">
@@ -24,7 +32,7 @@ export default {
   },
   data() {
     return {
-      title: 'Vue Admin Template',
+      title: '教育部考试中心项目管理系统',
       logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
     }
   }
